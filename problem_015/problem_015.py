@@ -34,9 +34,10 @@ val_max = 0
 bit_cnt = 0
 way_cnt = 0
 
+#val_min = 2^n (n = move_right)
 for i in range(bit_nbr):
 	val_min = (val_min << 1) + 1
-
+#val_max = 2^(n+n)-2^n
 val_max = val_min << move_right
 
 print("for a",move_right,"x",move_down)
