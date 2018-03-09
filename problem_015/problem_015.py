@@ -24,7 +24,7 @@ Solution :
 """
 
 
-move_right = 6 #right = logic 0
+move_right = 5 #right = logic 0
 move_down = move_right #down = logic 1, move_down = move_right if  if the grid is symetric
 bit_nbr = move_down
 #val_min = 0b0000000011111111
