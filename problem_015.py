@@ -19,12 +19,16 @@ Solution :
 9x9 => 48620
 10x10 => 184756
 11x11 => 705432
+12x12 => 2704156
+13x13 => 10400600
+14x14 => 134209536
 
+Question : combien de chemin a un 3x1 ou un 10x1, 10x2 etc?
 """
 
 
 move_right = 2 #right = logic 0
-move_down = move_right #down = logic 1, move_down = move_right if  if the grid is symetric
+move_down = 3 #down = logic 1, move_down = move_right if  if the grid is symetric
 bit_nbr = move_down
 #val_min = 0b0000000011111111
 val_min = 0
@@ -33,14 +37,26 @@ val_max = 0
 bit_cnt = 0
 way_cnt = 0
 
-for i in range(bit_nbr):
-	val_min = (val_min << 1) + 1
 
-val_max = val_min << move_right
+#for i in range(bit_nbr):
+#	val_min = (val_min << 1) + 1
+#val_min = 2**move_right - 1 #val_min = 2^n -1 (n = move_right)
+#val_max = 2**(move_right + move_right) - val_min #val_max = 2^(n+n)-2^n
+#val_max = 2**(2*move_right -1) - 2**(move_right - 1)
+if move_right < move_down :
+    val_min = 2**move_right - 1
+    val_max = val_min << move_down
+else :
+    val_min = 2**move_down - 1
+    val_max = val_min << move_right
+
+
 
 print("for a",move_right,"x",move_down)
-print("val min =",bin(val_min))
-print("val max =",bin(val_max))
+#print("val min =",bin(val_min))
+#print("val min =",val_min)
+#print("val max =",bin(val_max))
+#print("val max =",val_max)
 
 for i in range(val_min,val_max + 1):
     temp = i
@@ -51,8 +67,8 @@ for i in range(val_min,val_max + 1):
         temp = temp >> 1
     if bit_cnt == bit_nbr :
         way_cnt= way_cnt + 1
-        print(i,"=>",bin(i))
-        
+        print(i,"=>",bin(i)[2:].zfill(move_right + move_down))
+
 print("nbr of way =",way_cnt)
 
 
