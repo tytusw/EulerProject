@@ -14,8 +14,11 @@ Solution :
 val = str(2**1000)
 somme = 0
 
+print(val)
+
 for i in range(len(val)):
     somme = somme + int(val[i])
+    print (somme,"+",val[i])
 
 print (somme)
 
